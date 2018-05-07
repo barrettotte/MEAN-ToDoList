@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-16">
+    <br />
+    <h1>Barrett's To Do List</h1>
+    <hr>
+    <h5>Angular CLI, NodeJS, Bootstrap, MongoDB</h5>
+    <br />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-16">
+
+    <div class="todos" *ngIf="toDoList">
+      <table class="table">
+        <thead class="h">
+          <tr class="h">
+            <th class="h">Title</th>
+            <th class="h">Description</th>
+            <th class="h">Date</th>
+            <th class="h">Type</th>
+            <th class="h">Status</th>
+            <th class="h">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="task" (dblclick)="editTask(task)" *ngFor="let task of toDoList">
+            <ng-container *ngIf="!editTasks.includes(task); else editTD">
+              <td>{{task.title}}</td>
+              <td>{{task.description}}</td>
+              <td>{{task.date | date}}</td>
+              <td>{{task.type}}</td>
+              <td>{{task.status}}</td>
+            </ng-container>
+            <ng-template #editTD>
+              <td>
+                <input type="text" name="title" id="title" (keypress)="submitTask($event, task)" [(ngModel)]="task.title" placeholder="Title" class="form-control">
+              </td>
+              <td>
+                <input type="text" name="description" id="description" (keypress)="submitTask($event, task)" [(ngModel)]="task.description" placeholder="Description" class="form-control">
+              </td>
+              <td>
+                <input type="date" name="date" id="date" (keypress)="submitTask($event, task)" [(ngModel)]="task.date" class="form-control">
+              </td>
+              <td>
+                <input type="text" name="type" id="type" (keypress)="submitTask($event, task)" [(ngModel)]="task.type" placeholder="Type" class="form-control">
+              </td>
+              <td>
+                <input type="text" name="status" id="status" (keypress)="submitTask($event, task)" [(ngModel)]="task.status" placeholder="Status" class="form-control">
+              </td>
+            </ng-template>
+            <td class="o">
+              <button class="btn btn-success" (click)="doneTask(task)">
+                <i class="fa fa-check"></i>
+              </button>
+              &nbsp;
+              <button class="btn btn-primary" (click)="editTask(task)">
+                <i class="fa fa-pencil"></i>
+              </button>
+              &nbsp;
+              <button class="btn btn-danger" (click)="deleteTask(task)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <form>
+      <div class="form-row">
+        <div class="col-md-3">
+          <input type="text" name="title" id="title" [(ngModel)]="newTask.title" placeholder="Title" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <input name="description" id="description" [(ngModel)]="newTask.description" placeholder="Description" class="form-control" id="description">
+        </div>
+        <div class="col-md-3">
+          <input name="type" id="type" [(ngModel)]="newTask.type" placeholder="Type" class="form-control" id="type">
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary" (click)="createTask()">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-2"></div>
+</div>
