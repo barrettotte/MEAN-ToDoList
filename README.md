@@ -30,3 +30,10 @@ Simple To Do List using MEAN stack and Bootstrap (MongoDB, ExpressJS, Angular CL
 ** **
 ![Screenshot-02](https://github.com/barrettotte/MEAN-ToDoList/blob/master/Screenshot-02-Edit-View.PNG)
 **Editing an entry**
+
+
+# TO DO
+* Enumerate task type and add a dropdown for it
+* Remove double clicking, I don't like it anymore
+* Make tasks sortable by status/type/name
+* Implement ability to move tasks up/down the list with buttons
