@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 var dbconfig = require('./config/database');
 
+
 //Routes
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -29,11 +30,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//CORS config --> Connect back and front end applications properly
+// NOTE: This must be BEFORE routes/mongodb connection
+app.use(function(request, response, next){
+	response.header("Access-Control-Allow-Origin", "http://localhost:4200");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	response.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+	next();
+});
+
+
 //Give application urls for routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
-
 
 
 //Setup MongoDB database with Mongoose
@@ -45,16 +55,6 @@ mongoose.connect(dbconfig.database)
 	.catch(() =>{
 		console.log("Error connecting to MongoDB database at " + dbconfig.database);
 	});
-
-
-//CORS config --> Connect back and front end applications properly
-app.use(function(request, response, next){
-	response.header("Access-Control-Allow-Origin", "http://localhost:4200");
-	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	response.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-	next();
-});
-
 
 
 
