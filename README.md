@@ -12,14 +12,13 @@ Simple To Do List using MEAN stack and Bootstrap (MongoDB, ExpressJS, Angular CL
 * Download and install both [NodeJS](https://nodejs.org/en/download/) and [Angular CLI](https://cli.angular.io/)
 
 # Project Setup
-* Open another command prompt instance
 * Enter main directory  ```cd MEAN-ToDoList\ToDo```
 * Install node modules ```npm install```
 * Enter frontend directory ```cd ToDo-angular```
 * Install angular CLI ```npm install -g @angular/cli```
 * Install front end node modules ```npm install```
 * Launch Angular Front End ```ng serve```
-* Open new command prompt instance and navigate to directory ```cd ../```
+* Navigate to directory ```cd ../```
 * Launch NodeJS Back End ```npm start```
 * (WindowsKey + R) Run ```chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security```
 * Navigate to http://127.0.0.1:4200/
